@@ -5,7 +5,6 @@
 #define dialmax d4
 
 num main(void) {
-    num isHot;
     while (1) {
         if ((load(gassensor, "Temperature") - 273) >= load(dialmax, "Setting")) {
             store(heater, "On", 0);
@@ -22,4 +21,3 @@ num main(void) {
         sleep(5);
     }    
 }
-num main(void)
