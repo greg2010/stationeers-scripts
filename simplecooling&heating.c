@@ -21,7 +21,7 @@ num main(void) {
             store(heater, "On", 1);
         }
 
-        if ((isCold == 0) && (isHot == 0)) {
+        if ((!isCold) && (!isHot)) {
             store(cooler, "On", 0);
             store(heater, "On", 0);
         }
