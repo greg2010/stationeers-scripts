@@ -5,19 +5,26 @@
 #define dialmax d4
 
 num main(void) {
+    num isHot;
+    num isCold;
     while (1) {
-        if ((load(gassensor, "Temperature") - 273) >= load(dialmax, "Setting")) {
+        isHot = (load(gassensor, "Temperature") - 273) >= load(dialmax, "Setting");
+        isCold = (load(gassensor, "Temperature") - 273) <= load(dialmin, "Setting");
+
+        if (isHot) {
             store(heater, "On", 0);
             store(cooler, "On", 1);
-        } 
-        if ((load(gassensor, "Temperature") - 273) <= load(dialmin, "Setting")) {
+        }
+
+        if (isCold) {
             store(cooler, "On", 0);
             store(heater, "On", 1);
         }
-        else {
+
+        if ((isCold == 0) && (isHot == 0)) {
             store(cooler, "On", 0);
             store(heater, "On", 0);
         }
         sleep(5);
-    }    
+    }
 }

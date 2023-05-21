@@ -1,12 +1,11 @@
-#define diode d0
-#define light d1
-
 num main(void) {
     num diodeSumPrev;
     num diodeSum;
 
     store_batch(hash("StructureDiodeSlide"), "On", 0);
     store_batch(hash("StructureLightRound"), "On", 1);
+    store_batch(hash("StructureLightLongWide"), "On", 1);
+    store_batch(hash("StructureLightLongAngled"), "On", 1);
     diodeSumPrev = load_batch(hash("StructureDiodeSlide"), "On", 1);
     yield();
 
@@ -17,12 +16,16 @@ num main(void) {
         {
             store_batch(hash("StructureDiodeSlide"), "On", 0);
             store_batch(hash("StructureLightRound"), "On", 1);
+            store_batch(hash("StructureLightLongWide"), "On", 1);
+            store_batch(hash("StructureLightLongAngled"), "On", 1);
             diodeSumPrev = diodeSum;
         }
          if ((diodeSum > diodeSumPrev))
         {
             store_batch(hash("StructureDiodeSlide"), "On", 1);
             store_batch(hash("StructureLightRound"), "On", 0);
+            store_batch(hash("StructureLightLongWide"), "On", 0);
+            store_batch(hash("StructureLightLongAngled"), "On", 0);
             diodeSumPrev = diodeSum;
         }
 
